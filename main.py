@@ -6,9 +6,13 @@ def runButt():
     upload = Speedtest().upload()
     download_speed = round(download / (10**6), 2)
     upload_speed = round(upload / (10**6), 2)
+    ping = Speedtest()
+    ping.get_best_server()
+    ping_test = round(ping.results.ping, 2)
 
     download_label.config(text="Download speed: \n" + str(download_speed) + "MbPs")
     upload_label.config(text="Upload speed: \n" + str(upload_speed) + "MbPs")
+    ping_label.config(text="Ping: \n" + str(ping_test) + "Ms")
 
 
 root = Tk()
@@ -20,6 +24,8 @@ download_label = Label(root, text="Download speed: \n-", font=35)
 download_label.pack(pady=(50, 0))
 upload_label = Label(root, text="Upload speed: \n-", font=35)
 upload_label.pack(pady=(10, 0))
+ping_label = Label(root, text="Ping: \n-", font=35)
+ping_label.pack(pady=(5, 0))
 
 
 
