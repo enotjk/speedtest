@@ -2,17 +2,12 @@ from tkinter import *
 from speedtest import Speedtest
 
 def runButt():
-    download = Speedtest().download()
-    upload = Speedtest().upload()
-    download_speed = round(download / (10**6), 2)
-    upload_speed = round(upload / (10**6), 2)
-    ping = Speedtest()
-    ping.get_best_server()
-    ping_test = round(ping.results.ping, 2)
+    st = speedtest.Speedtest()
+    st.get_best_server()
 
-    download_label.config(text="Download speed: \n" + str(download_speed) + "MbPs")
-    upload_label.config(text="Upload speed: \n" + str(upload_speed) + "MbPs")
-    ping_label.config(text="Ping: \n" + str(ping_test) + "Ms")
+    download_label.config(text="Download speed: \n" + str(round(st.download() / (10**6), 2)) + "MbPs")
+    upload_label.config(text="Upload speed: \n" + str(round(st.upload() / (10**6), 2)) + "MbPs")
+    ping_label.config(text="Ping: \n" + str(round(st.results.ping, 2)) + "Ms")
 
 
 root = Tk()
@@ -33,3 +28,4 @@ button = Button(root, text="Start", font=40, command=runButt)
 button.pack(side=BOTTOM, pady=40)
 
 root.mainloop()
+
