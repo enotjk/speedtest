@@ -1,6 +1,4 @@
 from tkinter import *
-
-import speedtest
 from speedtest import Speedtest
 
 def runButt():
